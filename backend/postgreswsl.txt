@@ -1,0 +1,7 @@
+
+//inicia o servidor postgresql
+sudo service postgresql start
+
+
+//verificar se está online
+sudo service postgresql status
