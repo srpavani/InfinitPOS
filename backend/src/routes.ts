@@ -8,6 +8,10 @@ import {CreateCategoryController } from './controllers/category/CreateCategoryCo
 import { ListCategoryController } from './controllers/category/ListCategoryController';
 import { CreateProductController } from './controllers/product/CreateProductController';
 import uploadConfig from './config/multer'
+import { ListByCategoryController } from './controllers/product/ListByCategoryController';
+import { CreateOrderController } from './controllers/order/CreateOrderController';
+import { RemoveOrderController } from './controllers/order/RemoveOrderController';
+
 
 const router = Router();
 
@@ -25,7 +29,15 @@ router.get('/category', isAutenticated, new ListCategoryController().handle)
 
 /// rotas produtos
 
-router.post('/product', isAutenticated, upload.single('file'), new CreateProductController().handle )
+router.post('/product', isAutenticated, upload.single('file'), new CreateProductController().handle)
+router.get('/category/product', isAutenticated, new ListByCategoryController().handle)
+
+
+//rotas order
+
+router.post('/order', isAutenticated,new CreateOrderController().handle)
+router.delete('/order', isAutenticated,new RemoveOrderController().handle)
+
 
 
 
