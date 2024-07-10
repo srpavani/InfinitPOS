@@ -1,5 +1,24 @@
 import prismaClient from "../../prisma";
 
+interface ProductRequest{
+    name: string;
+    price: string;
+    description: string;
+    banner: string
+
+}
+
+
+
+
+class CreateProductService{
+
+    
+
+}
+
+export {CreateProductService}
+
 
 interface CategoryRequest{
     name: string;
@@ -23,5 +42,3 @@ class CreateCategoryService{
         return category
     }
 }
-
-export { CreateCategoryService }
