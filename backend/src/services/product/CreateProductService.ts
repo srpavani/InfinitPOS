@@ -4,14 +4,18 @@ interface ProductRequest{
     name: string;
     price: string;
     description: string;
-    banner: string
-
+    banner: string;
+    category: string;
 }
 
 
 
 
 class CreateProductService{
+    async execute({name, price, description, banner, category}: ProductRequest){
+
+        return {ok: true}
+    }
 
     
 
@@ -20,25 +24,3 @@ class CreateProductService{
 export {CreateProductService}
 
 
-interface CategoryRequest{
-    name: string;
-}
-
-class CreateCategoryService{
-    async execute({name}: CategoryRequest){
-        if(name===""){
-            throw new Error("nome invalido")
-        }
-
-        const category = await prismaClient.category.create({
-            data:{
-                name: name,
-            },
-            select:{
-                id: true,
-                name: true
-            }
-        })
-        return category
-    }
-}
