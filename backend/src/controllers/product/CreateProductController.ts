@@ -4,17 +4,33 @@ import { CreateProductService } from "../../services/product/CreateProductServic
 class CreateProductController{
     async handle(req: Request, res:Response){
         const {name, price, description, category} = req.body;
-        let banner = ''
+        
         const createProductservice = new CreateProductService();
-        const product = await createProductservice.execute({
-            name,
-            price,
-            description,
-            category,
-            banner,
-        });
 
-        return res.json(product)
+        if(!req.file){
+            throw new Error("erro ao enviar imagem");
+        }else{
+
+            const { originalname, filename: banner } = req.file;
+            
+
+            const product = await createProductservice.execute({
+                name,
+                price,
+                description,
+                category,
+                banner,
+            });
+
+            return res.json(product)
+
+        }
+
+
+
+        
+
+        
     }
 }
 
