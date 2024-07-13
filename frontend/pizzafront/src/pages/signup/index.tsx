@@ -34,7 +34,7 @@ export default function Signup() {
         />
         
 
-        <Button type='submit' Loading={true}>
+        <Button type='submit' Loading={false}>
           Cadastrar
         </Button>
 
