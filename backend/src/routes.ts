@@ -1,5 +1,6 @@
-import {Router} from 'express'
+import {NextFunction, Router} from 'express'
 import multer from 'multer';
+import { Request, Response } from 'express';
 import {CreateUserController} from './controllers/user/CreateUserController'
 import {AuthUserController} from './controllers/user/AuthUserController'
 import { DetailuserController } from './controllers/user/DetailUserController';
@@ -17,9 +18,29 @@ import { SenderOrderController } from './controllers/order/SenderOrderController
 import { ListOrderController } from './controllers/order/ListOrderController';
 import { DetailOrderController } from './controllers/order/DetailOrderController';
 import { FinishOrderController } from './controllers/order/FinishOrderController';
+
+
+
+
+
 const router = Router();
 
 const upload = multer(uploadConfig.upload("./tmp"))
+
+//
+
+
+router.use((req: Request, res: Response, next: NextFunction) => {
+    const sendB = res.send.bind(res);
+    res.send = (body) => {
+        console.log(`rota chamada: ${req.path}, metodo: ${req.method}`);
+        console.log(`status: ${res.statusCode} - ${res.statusCode < 400 ? 'bem-sucedido' : 'bad request'}`);
+        return sendB(body);
+    };
+    next();
+});
+
+
 
 // rotas user
 router.post('/users', new CreateUserController().handle)
