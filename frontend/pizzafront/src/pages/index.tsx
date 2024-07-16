@@ -6,7 +6,7 @@ import Image from "next/image";
 import {Input} from '../components/ui/Input'
 import { Button } from '../components/ui/button'
 import {AuthContext} from '../contexts/AuthContext'
-
+import { toast } from "react-toastify";
 
 import Link from "next/link";
 
@@ -23,7 +23,7 @@ export default function Home() {
 
   async function handleLogin(event: FormEvent){
     if(email ===''|| password === ''){
-      alert("Preencha todos os dados");
+      toast.info("Preencha todos os dados");
       return ;
     }
 
