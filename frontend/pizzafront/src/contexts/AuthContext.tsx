@@ -94,14 +94,14 @@ export function AuthProvider({ children }: AuthProviderProps){
         password,
       })
       alert("cadastrado com sucesso")
-
+      
       Router.push('/')
     }catch(err){
       console.log("error ao cadastrar", err)
     }
-
+    
   }
-
+  
 
 
   return(
